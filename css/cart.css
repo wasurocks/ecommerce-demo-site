@@ -1,114 +1,315 @@
 body
 {
     margin: 0;
-    font-family: 'Lato', sans-serif;
+    font-family: var(--font-family-primary);
+    background-color: var(--color-bg-secondary);
 }
+
 #cartMainContainer
 {
-    padding: 90px 50px;
+    padding: calc(var(--header-height) + var(--space-8)) var(--space-12);
+    min-height: calc(100vh - 200px);
 }
+
+#cartMainContainer h1 {
+    font-size: var(--font-size-4xl);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-text-primary);
+    margin-bottom: var(--space-4);
+}
+
+#cartMainContainer #totalItem {
+    font-size: var(--font-size-lg);
+    color: var(--color-text-secondary);
+    font-weight: var(--font-weight-medium);
+    margin-bottom: var(--space-8);
+}
+
 #cartContainer
 {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-gap: 20px;
+    grid-template-columns: 1fr 400px;
+    grid-gap: var(--space-8);
+    align-items: start;
+    max-width: 1400px;
+    margin: 0 auto;
 }
-img
+
+#box img
 {
-    width: 80px;
-    float: left;
-    border-radius: 10px;
-    margin-right: 50px;
+    width: 120px;
+    height: 120px;
+    object-fit: cover;
+    border-radius: var(--radius-lg);
+    flex-shrink: 0;
 }
+
 #boxContainer
 {
     display: grid;
-    grid-gap: 20px;
-    padding: 20px;
+    grid-gap: var(--space-5);
+    padding: var(--space-5);
     width: 100%;
-    /* float: left; */
 }
+
 #box
 {
-    background-color: white;
-    box-shadow: 1px 2px 6px 2px rgb(219, 219, 219);
-    border-radius: 10px;
+    background-color: var(--color-bg-primary);
+    box-shadow: var(--shadow-base);
+    border-radius: var(--radius-xl);
     width: 100%;
-    /* margin: auto */
-    padding: 20px 10px;
+    padding: var(--space-6);
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-4);
+    transition: all var(--transition-base);
+    position: relative;
 }
+
 #box:hover
 {
-    box-shadow: 0px 1px 3px 2px rgb(185, 185, 185);
+    box-shadow: var(--shadow-md);
 }
+
+#box h3
+{
+    font-size: var(--font-size-lg);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-text-primary);
+    margin: 0 0 var(--space-2) 0;
+}
+
+#box h4
+{
+    font-size: var(--font-size-base);
+    font-weight: var(--font-weight-medium);
+    color: var(--color-primary);
+    margin: 0;
+}
+
+.cart-item-details
+{
+    flex: 1;
+}
+
+.cart-item-actions
+{
+    display: flex;
+    align-items: center;
+    gap: var(--space-4);
+    margin-top: var(--space-3);
+}
+
+.quantity-controls
+{
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    background-color: var(--color-bg-secondary);
+    padding: var(--space-1);
+    border-radius: var(--radius-base);
+}
+
+.quantity-btn
+{
+    width: 32px;
+    height: 32px;
+    border: none;
+    background-color: var(--color-primary);
+    color: var(--color-text-inverse);
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    font-size: var(--font-size-lg);
+    font-weight: var(--font-weight-bold);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all var(--transition-fast);
+}
+
+.quantity-btn:hover
+{
+    background-color: var(--color-primary-dark);
+    transform: scale(1.1);
+}
+
+.quantity-display
+{
+    min-width: 40px;
+    text-align: center;
+    font-weight: var(--font-weight-semibold);
+    font-size: var(--font-size-base);
+}
+
+.remove-btn
+{
+    padding: var(--space-2) var(--space-4);
+    background-color: var(--color-error);
+    color: var(--color-text-inverse);
+    border: none;
+    border-radius: var(--radius-base);
+    cursor: pointer;
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-medium);
+    transition: all var(--transition-base);
+}
+
+.remove-btn:hover
+{
+    background-color: #dc2626;
+    transform: scale(1.05);
+}
+
 #totalContainer
 {
-    width: 50%;
-    padding: 20px;
-    margin: auto;
-    background-color: white;
-    border-radius: 10px;
-    box-shadow: 1px 2px 6px 2px rgb(219, 219, 219);
+    width: 100%;
+    padding: var(--space-8);
+    background-color: var(--color-bg-primary);
+    border-radius: var(--radius-xl);
+    box-shadow: var(--shadow-lg);
+    position: sticky;
+    top: calc(var(--header-height) + var(--space-5));
+    height: fit-content;
 }
+
 #totalContainer:hover
 {
-    box-shadow: 0px 1px 3px 2px rgb(185, 185, 185);
+    box-shadow: var(--shadow-xl);
 }
+
+#totalContainer h2
+{
+    font-size: var(--font-size-2xl);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-text-primary);
+    margin: 0 0 var(--space-6) 0;
+}
+
+#totalContainer h4
+{
+    font-size: var(--font-size-xl);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-primary);
+    margin: var(--space-4) 0;
+}
+
+.total-row
+{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--space-3) 0;
+    border-bottom: 1px solid var(--color-border-light);
+}
+
+.total-row:last-of-type
+{
+    border-bottom: 2px solid var(--color-primary);
+    font-weight: var(--font-weight-bold);
+    font-size: var(--font-size-xl);
+    color: var(--color-primary);
+    margin-top: var(--space-4);
+    padding-top: var(--space-4);
+}
+
 button
 {
-    padding: 8px 12px;
-    background-color: rgb(3, 122, 122);
+    width: 100%;
+    padding: var(--btn-padding-base);
+    background-color: var(--color-primary);
     border: none;
-    border-radius: 5px;
+    border-radius: var(--radius-lg);
     cursor: pointer;
+    font-weight: var(--font-weight-semibold);
+    font-size: var(--font-size-base);
+    transition: all var(--transition-base);
+    margin-top: var(--space-5);
 }
+
 button a
 {
     text-decoration: none;
-    color: white;
-    font-size: 15px;
+    color: var(--color-text-inverse);
+    display: block;
 }
+
 button:hover
 {
-    background-color: rgb(3, 94, 94);
+    background-color: var(--color-primary-dark);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-primary);
 }
+
+button:active
+{
+    transform: translateY(0);
+}
+
 button a:focus
 {
     outline: none;
 }
 
+/* Empty cart state */
+#cartContainer.empty {
+    grid-template-columns: 1fr;
+    text-align: center;
+    padding: var(--space-20);
+}
+
+#cartContainer.empty p {
+    font-size: var(--font-size-xl);
+    color: var(--color-text-secondary);
+    margin-bottom: var(--space-6);
+}
+
 /* ----------------------------- MEDIA QUERY --------------------------- */
 
-@media(max-width: 800px)
-{
-    img
-    {
-        width: 60px;
-        margin-right: 20px;
-    }
-    h3, h4
-    {
-        font-size: 14px;
-    }
-    h2
-    {
-        font-size: 18px;
-    }
-    #cartMainContainer
-    {
-        padding: 90px 20px;
-    }
-}
-@media(max-width: 555px)
+@media(max-width: 1000px)
 {
     #cartContainer
     {
-        display: grid;
         grid-template-columns: 1fr;
-    }    
+    }
+
+    #totalContainer
+    {
+        position: static;
+    }
+}
+
+@media(max-width: 800px)
+{
+    #box img
+    {
+        width: 80px;
+        height: 80px;
+    }
+
+    #cartMainContainer
+    {
+        padding: calc(var(--header-height) + var(--space-5)) var(--space-5);
+    }
+}
+
+@media(max-width: 555px)
+{
+    #box
+    {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    #box img
+    {
+        width: 100%;
+        max-width: 200px;
+        height: 200px;
+    }
+
     #boxContainer
     {
-        padding: 20px;
-        width: 80%;
+        padding: var(--space-4);
     }
 }

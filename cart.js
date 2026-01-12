@@ -32,25 +32,35 @@ function dynamicCartSection(ob,itemCounter)
     boxImg.src = ob.preview
     boxDiv.appendChild(boxImg)
 
+    let detailsDiv = document.createElement('div')
+    detailsDiv.className = 'cart-item-details'
+    boxDiv.appendChild(detailsDiv)
+
     let boxh3 = document.createElement('h3')
-    let h3Text = document.createTextNode(ob.name + ' × ' + itemCounter)
-    // let h3Text = document.createTextNode(ob.name)
+    let h3Text = document.createTextNode(ob.name)
     boxh3.appendChild(h3Text)
-    boxDiv.appendChild(boxh3)
+    detailsDiv.appendChild(boxh3)
+
+    let brandDiv = document.createElement('p')
+    brandDiv.style.cssText = 'color: var(--color-text-secondary); font-size: var(--font-size-sm); margin: var(--space-1) 0;'
+    let brandText = document.createTextNode(ob.brand || 'Brand Name')
+    brandDiv.appendChild(brandText)
+    detailsDiv.appendChild(brandDiv)
 
     let boxh4 = document.createElement('h4')
-    let h4Text = document.createTextNode('Amount: Rs' + ob.price)
+    let h4Text = document.createTextNode('Rs ' + ob.price + ' × ' + itemCounter)
     boxh4.appendChild(h4Text)
-    boxDiv.appendChild(boxh4)
+    detailsDiv.appendChild(boxh4)
 
-    // console.log(boxContainerDiv);
+    let subtotalDiv = document.createElement('p')
+    subtotalDiv.style.cssText = 'color: var(--color-text-primary); font-weight: var(--font-weight-semibold); margin-top: var(--space-3);'
+    let subtotalText = document.createTextNode('Subtotal: Rs ' + (ob.price * itemCounter))
+    subtotalDiv.appendChild(subtotalText)
+    detailsDiv.appendChild(subtotalDiv)
 
     buttonLink.appendChild(buttonText)
     cartContainer.appendChild(boxContainerDiv)
     cartContainer.appendChild(totalContainerDiv)
-    // let cartMain = document.createElement('div')
-    // cartmain.id = 'cartMainContainer'
-    // cartMain.appendChild(totalContainerDiv)
 
     return cartContainer
 }
@@ -63,7 +73,7 @@ totalDiv.id = 'total'
 totalContainerDiv.appendChild(totalDiv)
 
 let totalh2 = document.createElement('h2')
-let h2Text = document.createTextNode('Total Amount')
+let h2Text = document.createTextNode('Order Summary')
 totalh2.appendChild(h2Text)
 totalDiv.appendChild(totalh2)
 
@@ -71,8 +81,7 @@ totalDiv.appendChild(totalh2)
 function amountUpdate(amount)
 {
     let totalh4 = document.createElement('h4')
-    // let totalh4Text = document.createTextNode(amount)
-    let totalh4Text = document.createTextNode('Amount: Rs ' + amount)
+    let totalh4Text = document.createTextNode('Rs ' + amount)
     totalh4Text.id = 'toth4'
     totalh4.appendChild(totalh4Text)
     totalDiv.appendChild(totalh4)

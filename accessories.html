@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Accessories | SHOPLANE</title>
+    <!-- Design System Variables -->
+    <link rel="stylesheet" href="css/variables.css">
+    <!-- favicon -->
+    <link rel="icon" href="https://yt3.ggpht.com/a/AGF-l78km1YyNXmF0r3-0CycCA0HLA_i6zYn_8NZEg=s900-c-k-c0xffffffff-no-rj-mo" type="image/gif" sizes="16x16">
+    <script src="https://kit.fontawesome.com/4a3b1f73a2.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,500,600,700,900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            font-family: var(--font-family-primary);
+            background: linear-gradient(135deg, var(--color-secondary) 0%, var(--color-primary) 100%);
+            min-height: 100vh;
+        }
+        .coming-soon-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            padding: var(--space-10);
+            text-align: center;
+        }
+        .icon-wrapper {
+            font-size: 8rem;
+            color: var(--color-text-inverse);
+            margin-bottom: var(--space-8);
+            animation: rotate 4s ease-in-out infinite;
+        }
+        @keyframes rotate {
+            0%, 100% { transform: rotate(0deg); }
+            25% { transform: rotate(-10deg); }
+            75% { transform: rotate(10deg); }
+        }
+        h1 {
+            font-size: var(--font-size-5xl);
+            font-weight: var(--font-weight-bold);
+            color: var(--color-text-inverse);
+            margin: 0 0 var(--space-4) 0;
+        }
+        p {
+            font-size: var(--font-size-xl);
+            color: var(--color-text-inverse);
+            margin: 0 0 var(--space-8) 0;
+            max-width: 600px;
+            opacity: 0.9;
+        }
+        .back-btn {
+            display: inline-block;
+            padding: var(--btn-padding-lg);
+            background-color: var(--color-bg-primary);
+            color: var(--color-primary);
+            text-decoration: none;
+            border-radius: var(--radius-lg);
+            font-weight: var(--font-weight-semibold);
+            font-size: var(--font-size-lg);
+            transition: all var(--transition-base);
+            box-shadow: var(--shadow-xl);
+        }
+        .back-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-2xl);
+        }
+    </style>
+</head>
+<body>
+    <!-- HEADER -->
+    <div id="1"></div>
+    <script>
+        load("header.html");
+        function load(url)
+        {
+            req = new XMLHttpRequest();
+            req.open("GET", url, false);
+            req.send(null);
+            document.getElementById(1).innerHTML = req.responseText;
+        }
+    </script>
+
+    <div class="coming-soon-container">
+        <div class="icon-wrapper">
+            <i class="fas fa-gem"></i>
+        </div>
+        <h1>Accessories Collection</h1>
+        <p>Discover the perfect accessories to complement your style. Our collection is coming soon with exclusive pieces!</p>
+        <a href="index.html" class="back-btn">
+            <i class="fas fa-arrow-left"></i> Back to Home
+        </a>
+    </div>
+
+    <!-- FOOTER -->
+    <div id="4"></div>
+    <script>
+        load("footer.html");
+        function load(url)
+        {
+            req = new XMLHttpRequest();
+            req.open("GET", url, false);
+            req.send(null);
+            document.getElementById(4).innerHTML = req.responseText;
+        }
+    </script>
+</body>
+</html>

@@ -59,7 +59,41 @@ function dynamicClothingSection(ob) {
 let mainContainer = document.getElementById("mainContainer");
 let containerClothing = document.getElementById("containerClothing");
 let containerAccessories = document.getElementById("containerAccessories");
-// mainContainer.appendChild(dynamicClothingSection('hello world!!'))
+
+// Loading skeleton function
+function createSkeletonBox() {
+  let skeletonBox = document.createElement("div");
+  skeletonBox.className = "skeleton-box";
+
+  let skeletonImage = document.createElement("div");
+  skeletonImage.className = "skeleton-image";
+
+  let skeletonDetails = document.createElement("div");
+  skeletonDetails.className = "skeleton-details";
+
+  let titleLine = document.createElement("div");
+  titleLine.className = "skeleton-line title";
+
+  let brandLine = document.createElement("div");
+  brandLine.className = "skeleton-line brand";
+
+  let priceLine = document.createElement("div");
+  priceLine.className = "skeleton-line price";
+
+  skeletonBox.appendChild(skeletonImage);
+  skeletonBox.appendChild(skeletonDetails);
+  skeletonDetails.appendChild(titleLine);
+  skeletonDetails.appendChild(brandLine);
+  skeletonDetails.appendChild(priceLine);
+
+  return skeletonBox;
+}
+
+// Show loading skeletons
+for (let i = 0; i < 5; i++) {
+  containerClothing.appendChild(createSkeletonBox());
+  containerAccessories.appendChild(createSkeletonBox());
+}
 
 // BACKEND CALLING
 
@@ -70,6 +104,11 @@ httpRequest.onreadystatechange = function() {
     if (this.status == 200) {
       // console.log('call successful');
       contentTitle = JSON.parse(this.responseText);
+
+      // Clear loading skeletons
+      containerClothing.innerHTML = '';
+      containerAccessories.innerHTML = '';
+
       if (getCookie('counter') && getCookie('counter')>=0) {
         var counter = getCookie('counter');
         document.getElementById("badge").innerHTML = counter;
@@ -89,6 +128,9 @@ httpRequest.onreadystatechange = function() {
       }
     } else {
       console.log("call failed!");
+      // Clear skeletons and show error
+      containerClothing.innerHTML = '<p style="grid-column: 1/-1; text-align: center; color: var(--color-error);">Failed to load products. Please try again.</p>';
+      containerAccessories.innerHTML = '';
     }
   }
 };
