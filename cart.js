@@ -77,6 +77,36 @@ let h2Text = document.createTextNode('Order Summary')
 totalh2.appendChild(h2Text)
 totalDiv.appendChild(totalh2)
 
+// Customer info form
+let customerInfoDiv = document.createElement('div')
+customerInfoDiv.className = 'customer-info-form'
+
+let nameLabel = document.createElement('label')
+nameLabel.htmlFor = 'customerName'
+nameLabel.textContent = 'Full Name'
+customerInfoDiv.appendChild(nameLabel)
+
+let nameInput = document.createElement('input')
+nameInput.type = 'text'
+nameInput.id = 'customerName'
+nameInput.placeholder = 'Enter your full name'
+nameInput.required = true
+customerInfoDiv.appendChild(nameInput)
+
+let emailLabel = document.createElement('label')
+emailLabel.htmlFor = 'customerEmail'
+emailLabel.textContent = 'Email Address'
+customerInfoDiv.appendChild(emailLabel)
+
+let emailInput = document.createElement('input')
+emailInput.type = 'email'
+emailInput.id = 'customerEmail'
+emailInput.placeholder = 'Enter your email address'
+emailInput.required = true
+customerInfoDiv.appendChild(emailInput)
+
+totalDiv.appendChild(customerInfoDiv)
+
 // TO UPDATE THE TOTAL AMOUNT
 function amountUpdate(amount)
 {
@@ -102,8 +132,25 @@ buttonLink.href = '/orderPlaced.html?'
 buttonTag.appendChild(buttonLink)
 
 buttonText = document.createTextNode('Place Order')
-buttonTag.onclick = function()
+buttonTag.onclick = function(e)
 {
+    let name = document.getElementById('customerName').value.trim()
+    let email = document.getElementById('customerEmail').value.trim()
+
+    if (!name || !email) {
+        e.preventDefault()
+        alert('Please enter your name and email address before placing the order.')
+        return false
+    }
+
+    let emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+    if (!emailRegex.test(email)) {
+        e.preventDefault()
+        alert('Please enter a valid email address.')
+        return false
+    }
+
+    buttonLink.href = '/orderPlaced.html?name=' + encodeURIComponent(name) + '&email=' + encodeURIComponent(email)
     console.log("clicked")
 }
 //dynamicCartSection()

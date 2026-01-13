@@ -1,6 +1,23 @@
 document.cookie = "orderId="+0
 document.cookie = "counter="+0
 
+// Get URL parameters
+const urlParams = new URLSearchParams(window.location.search)
+const customerName = urlParams.get('name') || 'Customer'
+const customerEmail = urlParams.get('email') || ''
+
+// Update the thank you message with customer name
+const nameSpan = document.getElementById('customerName')
+if (nameSpan) {
+    nameSpan.textContent = customerName
+}
+
+// Update the email in the confirmation message
+const emailSpan = document.getElementById('customerEmail')
+if (emailSpan) {
+    emailSpan.textContent = customerEmail
+}
+
 // let httpRequest = new XMLHttpRequest(),
 // jsonArray,
 // method = "GET",
